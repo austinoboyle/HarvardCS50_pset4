@@ -1,0 +1,31 @@
+1.  stdint.h is used to increase the portability of code between platforms.  It has specifically defined types of integers 
+(in terms of the number of bits an integer contains), so that the size of an "int" does not depend on the platform.
+
+2.  As described in my answer to 1, these are some of the defined types of integers that will be used.  A letter "u" out front of
+a variable type indicates that it is unsigned, so it can only be positive.  In general, uintN_t can represent an integer from 0 to
+2^N - 1, a variable intN_t can represent an integer from -2^(N-1) to 2^(N-1) - 1.  N represents the width of the data type in bits.
+
+3.  BYTE - 1 byte, DWORD - 4 bytes, LONG - 4 bytes, WORD - 2 bytes
+
+4.  First two bytes are usually 0x42 0x4D in hex, or BM in ascii
+
+5.  bfSize is in the Bitmap File Header, biSize is in the Bitmap Info Header.
+
+6.  If biHeight is negative, it indicates that the file is a top-down device-independent bitmap
+also means that iCompression must be either BI_RGB or BI_BITFIELDS. A file with a negative biHeight cannot be compressed           
+
+7.  biBitCount determines the number of bits per pixel
+
+8.  There are many reasons opening a file can return a NULL pointer.  Some examples would be: the file doesn't exist,
+the file exists but you don't have the permissions necessary to write to it, running out of memory, etc.
+
+9.  It specifies how many objects we want to read, and in our case we only want to read 1 each time
+
+10. It will add a buffer badding of 3 bytes
+
+11. fseek changes the location of the file pointer within a file by a certain number of bytes.  By default a file pointer starts
+at the beginning of a file and scans through all bytes until it reaches the end.  With this tool, we can start looking at a file 
+at a specified point.
+
+12. SEEK_CUR is an argument that can be passed as the third parameter of fseek, and starts the offset at the current position of the
+pointer.
